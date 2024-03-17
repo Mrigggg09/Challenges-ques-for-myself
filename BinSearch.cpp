@@ -1,9 +1,40 @@
 #include <iostream>
 using namespace std;
 
+class IntialSort{
+    public:
+    //Function to check whether array is sorted
+    bool checkSorted(int arr[],int n){
+        bool res=true;
+        for(int i=n-1;i>0;i--){
+            if(arr[i]<arr[i-1]){
+                res=false;
+                return res;
+            }
+        }
+        return res;
+    }
+    //Sorting the array before Binary Search, in case unsorted array was entered
+    void bubbleSort(int arr[],int n){
+        int temp;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n-i-1;j++){
+                if(arr[j+1]<arr[j]){
+                    temp=arr[j+1];
+                    arr[j+1]=arr[j];
+                    arr[j]=temp;
+                }
+            }
+        }
+    }
+};
 class BinSearch{
     public:
+    //Binary Search iterative approach
     int iterativeBinSearch(int arr[],int n,int se){
+        //ub = Upper Bound
+        //lb = Lower Bound
+        //se = Searching element(key)
         int ub=n-1,lb=0,mid,res=-1;
         while(lb<=ub){
             mid=(lb+ub)/2;
@@ -21,6 +52,7 @@ class BinSearch{
         }
         return res;
     }
+    //Binary Search recursive approach
     int recursiveBinSearch(int arr[],int n,int se,int ub,int lb){
         int res=-1;
         if(lb>ub){
@@ -48,6 +80,25 @@ int main(){
     for(int i=0;i<n;i++){
         cin>>arr[i];
     }
+    //Implementing sorting functions in case of unsorted array
+    IntialSort obj;
+    if(obj.checkSorted(arr,n)){
+        cout<<"Thanks for entering a sorted array.\n\n";
+
+        cout<<"Entered (Sorted) array:";
+    }
+    else{
+        cout<<"Array is'nt sorted.\n.\n.\n.\nLet's sort using Bubble Sort Technique:\n";
+        obj.bubbleSort(arr,n);
+
+        cout<<"Entered and then Sorted array:";
+    }
+
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+
     int se;
     cout<<"Enter Element to be searched:\n";
     cin>>se;
@@ -55,6 +106,7 @@ int main(){
     BinSearch ob;
     int res;
 
+    //Using switch to choose method of Binary Search implementation
     int choice;
     cout<<"Enter 1 to choose iterative approach for Binary search.\n";
     cout<<"Enter 2 to choose recursive approach for Binary search.\n";
@@ -77,4 +129,6 @@ int main(){
     else{
         cout<<"Element not found.\n";
     }
+
+    return 0;
 }
