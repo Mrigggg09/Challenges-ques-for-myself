@@ -1,6 +1,49 @@
 #include <iostream>
 using namespace std;
 
+void rotateArray(int arr[], int size, int rotations) {
+    // Perform rotation for each element of the array
+    for (int i = 0; i < rotations; i++) {
+        // Store the last element of the array
+        int lastElement = arr[size - 1];
+        
+        // Shift each element to the right by one position
+        for (int j = size - 1; j > 0; j--) {
+            arr[j] = arr[j - 1];
+        }
+        
+        // Place the last element at the beginning of the array
+        arr[0] = lastElement;
+    }
+}
+
+int main() {
+    int N;
+    cout << "Enter size of array: ";
+    cin >> N;
+    
+    int arr[N];
+    cout << "Enter elements of array: ";
+    for (int i = 0; i < N; i++) {
+        cin >> arr[i];
+    }
+    
+    int rotations = arr[0]; // Extract the value of n from the first element
+    rotateArray(arr, N, rotations);
+    
+    cout << "Rotated array: ";
+    for (int i = 0; i < N; i++) {
+        cout << arr[i] << " ";
+    }
+    
+    return 0;
+}
+
+//This was my attempt
+/*
+#include <iostream>
+using namespace std;
+
 class ArrangingSol{
     public:
         void RotateForwardByArrayIn0(int arr[],int n){
@@ -56,3 +99,4 @@ int main(){
     }
     cout<<endl;
 }
+*/
