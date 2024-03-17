@@ -1,45 +1,50 @@
 #include <iostream>
 using namespace std;
 
-void rotateArray(int arr[], int size, int rotations) {
-    // Perform rotation for each element of the array
-    for (int i = 0; i < rotations; i++) {
-        // Store the last element of the array
-        int lastElement = arr[size - 1];
-        
-        // Shift each element to the right by one position
-        for (int j = size - 1; j > 0; j--) {
-            arr[j] = arr[j - 1];
+class Solution{
+    public:
+        void rotateForward(int arr[],int n,int rotations){
+            //Array will be rotating by 1 position rotations number of times
+            for(int i=0;i<rotations;i++){
+                //Storing last element
+                int lastElement = arr[n-1];
+                //Shifting each element by 1 position to the right
+                for(int j=n-1;j>0;j--){
+                    arr[j]=arr[j-1];
+                }
+                //Placing last element to the first index
+                arr[0]=lastElement;
+            }
         }
-        
-        // Place the last element at the beginning of the array
-        arr[0] = lastElement;
+};
+int main(){
+    int n;
+    cout<<"Enter size of array:\n";
+    cin>>n;
+    cout<<"Enter values in array:\n";
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
     }
+    int rotations=arr[0];
+
+    cout<<"Initial entered array:\n";
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+
+    Solution ob;
+    ob.rotateForward(arr,n,rotations);
+
+    cout<<"Rotated array:\n";
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
 }
 
-int main() {
-    int N;
-    cout << "Enter size of array: ";
-    cin >> N;
-    
-    int arr[N];
-    cout << "Enter elements of array: ";
-    for (int i = 0; i < N; i++) {
-        cin >> arr[i];
-    }
-    
-    int rotations = arr[0]; // Extract the value of n from the first element
-    rotateArray(arr, N, rotations);
-    
-    cout << "Rotated array: ";
-    for (int i = 0; i < N; i++) {
-        cout << arr[i] << " ";
-    }
-    
-    return 0;
-}
-
-//This was my attempt
+//This was my first attempt
 /*
 #include <iostream>
 using namespace std;
